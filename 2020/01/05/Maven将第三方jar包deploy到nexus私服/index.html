@@ -120,7 +120,7 @@
               
                 <p class="mt-3">
                   <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  星期日, 一月 5日 2020, 12:14 凌晨
+                  星期日, 一月 5日 2020, 8:34 晚上
                 </p>
               
 
@@ -183,7 +183,7 @@
 <ul>
 <li>1.直接在私服上<code>upload</code> (推荐这种用法，简单粗暴)</li>
 </ul>
-<p><img src="/img/Nexus_upload.png" srcset="/img/loading.gif" alt="Nexus_upload"></p>
+<p><img src="/blog/img/Nexus_upload.png" srcset="/img/loading.gif" alt="Nexus_upload"></p>
 <ul>
 <li>2.使用maven deploy命令</li>
 </ul>
@@ -193,7 +193,7 @@
 <ul>
 <li><p><code>org.apache.maven.plugins:maven-deploy-plugin:2.8.2:deploy-file</code></p>
 <p>使用<code>mavn-deploy-plugin</code> 2.8.2版本<code>deploy</code>本地<code>jar</code>到私服</p>
-<p><img src="/img/Maven_deploy_plugin.png" srcset="/img/loading.gif" alt="Nexus_upload"></p>
+<p><img src="/blog/img/Maven_deploy_plugin.png" srcset="/img/loading.gif" alt="Nexus_upload"></p>
 <p>此处对应的<code>deploy</code>插件版本需要本地仓库里已经有相关的依赖包，如果没有，可以去<a href="https://repository.sonatype.org" target="_blank" rel="noopener">官方的资源库</a>(打开可能较慢；<a href="https://mvnrepository.com/" target="_blank" rel="noopener">备用网址1</a>、<a href="https://maven.aliyun.com/mvn/search" target="_blank" rel="noopener">备用网址2</a>)下载后<code>install</code>到本地仓库</p>
 </li>
 <li><p><code>-DgeneratePom=false</code> （<code>default=true</code>）可选项</p>
@@ -232,9 +232,9 @@
 <ul>
 <li>私服远程<code>Deployment policy</code>设置为<code>Allow redeploy</code></li>
 </ul>
-<p><img src="/img/Nexus_allow_redeploy.png" srcset="/img/loading.gif" alt="Nexus_allow_redeploy"></p>
+<p><img src="/blog/img/Nexus_allow_redeploy.png" srcset="/img/loading.gif" alt="Nexus_allow_redeploy"></p>
 <p>执行完效果如下：</p>
-<p><img src="/img/Maven_deploy_success.png" srcset="/img/loading.gif" alt="Nexus_allow_redeploy"></p>
+<p><img src="/blog/img/Maven_deploy_success.png" srcset="/img/loading.gif" alt="Nexus_allow_redeploy"></p>
 <p>附：写法不对，引发的一些错误和解决方案</p>
 <ul>
 <li>未指定<code>maven-deploy-plugin</code>版本</li>
@@ -242,7 +242,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn deploy:deploy-file -DgroupId=com.octo.captcha -DartifactId=jcaptcha-integration-simple-servlet -Dversion=2.0-alpha-1 -Dpackaging=jar -Dfile=jcaptcha-integration-simple-servlet-2.0-alpha-1.jar -Durl=http://192.168.116.129:8081/repository/maven-public/ -DrepositoryId=nexus-public</span><br></pre></td></tr></table></figure>
 
 <p>报错信息：</p>
-<p><img src="/img/not_definition_plugin_version.png" srcset="/img/loading.gif" alt="Nexus_allow_redeploy"></p>
+<p><img src="/blog/img/not_definition_plugin_version.png" srcset="/img/loading.gif" alt="Nexus_allow_redeploy"></p>
 <p>解决方法，指定一下版本</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn org.apache.maven.plugins:maven-deploy-plugin:2.8.2:deploy-file -DgroupId=com.octo.captcha -DartifactId=jcaptcha-integration-simple-servlet -Dversion=2.0-alpha-1 -Dpackaging=jar -Dfile=C:\Users\Administrator\Desktop\jcaptcha-integration-simple-servlet-2.0-alpha-1.jar -Durl=http://192.168.116.129:8081/repository/maven-releases/ -DrepositoryId=nexus-public</span><br></pre></td></tr></table></figure>
 
@@ -254,7 +254,7 @@
 
 <p>因为是将第三方<code>jar</code>包<code>deploy</code>到私服，所有直接引用本地库的包会报错</p>
 <p>报错信息：</p>
-<p><img src="/img/use_local_repository_error.png" srcset="/img/loading.gif" alt="use_local_repository_error"></p>
+<p><img src="/blog/img/use_local_repository_error.png" srcset="/img/loading.gif" alt="use_local_repository_error"></p>
 <p>解决方法，指定其他路径</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn org.apache.maven.plugins:maven-deploy-plugin:2.8.2:deploy-file -DgroupId=com.octo.captcha -DartifactId=jcaptcha-integration-simple-servlet -Dversion=2.0-alpha-1 -Dpackaging=jar -Dfile=C:\Users\Administrator\Desktop\jcaptcha-integration-simple-servlet-2.0-alpha-1.jar -Durl=http://192.168.116.129:8081/repository/maven-releases/ -DrepositoryId=nexus-public</span><br></pre></td></tr></table></figure>
 
